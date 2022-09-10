@@ -15,14 +15,6 @@ export function App() {
   const [showModal, setShowModal] = useState(false);
   const [modalPhoto, setModalPhoto] = useState(null);
 
-  useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown);
-
-    return () => window.removeEventListener('keydown', handleKeyDown);
-    
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
 
   useEffect(() => {
     
@@ -83,7 +75,7 @@ export function App() {
         {imagesHits && <ImageGallery items={imagesHits} toggleModal={toggleModal} />}
         {imagesHits.length > 0 && status !== 'pending' && <Button onIncrement={handleIncrement} >Load more</Button>}
         {status === 'pending' && <Loader />}
-        {showModal && <Modal modalPhoto={modalPhoto} modalBackdropClick={modalBackdropClick} />}
+      {showModal && <Modal modalPhoto={modalPhoto} modalBackdropClick={modalBackdropClick} handleKeyDown={handleKeyDown} />}
       </main>
     );
   
